@@ -71,6 +71,7 @@ const main = async () => {
 	// Estimate the slippage for a $5000 LONG trade
 	const solMarketAccount = clearingHouse.getMarket(solMarketInfo.marketIndex);
 
+	// set new peg scaled by 1e3
 	driftHelpers.calculateRepegCost(solMarketAccount,solMarketInfo.marketIndex,new BN(200000));
 
 };

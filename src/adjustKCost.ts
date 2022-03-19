@@ -71,6 +71,7 @@ const main = async () => {
 	// Estimate the slippage for a $5000 LONG trade
 	const solMarketAccount = clearingHouse.getMarket(solMarketInfo.marketIndex);
 
+    // set numerator and denominator - newK = oldK * numerator / denominator
 	const adjustKCost = convertToNumber(
 		driftHelpers.calculateAdjustKCost(solMarketAccount,solMarketInfo.marketIndex,new BN(101), new BN(100)),new BN(1000000)
 	)
