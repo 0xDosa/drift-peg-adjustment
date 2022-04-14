@@ -61,18 +61,27 @@ const main = async () => {
 	);
 	await clearingHouse.subscribe();
 
+	const markets = ['BTC', 'ETH', 'SOL'];
+	const deviations = [.01,.05,.1];
 
+	markets.forEach(curMarket => {
+		const solMarketInfo = Markets.find(
+			(market) => market.baseAssetSymbol === curMarket
+		);
+	
+		// Estimate the slippage for a $5000 LONG trade
+		const solMarketAccount = clearingHouse.getMarket(solMarketInfo.marketIndex);
 
+		deviations.forEach(deviation => {
+			const newPeg = solMarketAccount.amm.pegMultiplier.muln(1-deviation);
+			console.log(`\nMarket: ${curMarket} | Deviation: ${deviation} | New Peg: ${convertToNumber(newPeg,new BN(10**3))}`);
+			// set new peg scaled by 1e3
+			driftHelpers.calculateRepegCost(solMarketAccount,solMarketInfo.marketIndex,newPeg);
+		})
+
+	})
 	// Get current price
-	const solMarketInfo = Markets.find(
-		(market) => market.baseAssetSymbol === 'SOL'
-	);
 
-	// Estimate the slippage for a $5000 LONG trade
-	const solMarketAccount = clearingHouse.getMarket(solMarketInfo.marketIndex);
-
-	// set new peg scaled by 1e3
-	driftHelpers.calculateRepegCost(solMarketAccount,solMarketInfo.marketIndex,new BN(200000));
 
 };
 
