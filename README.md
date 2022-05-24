@@ -1,4 +1,4 @@
-# adjustment-cost
+# Drift Peg & K Adjustment Cost
 
 *this is experimental software*
 
@@ -16,6 +16,10 @@ ts-node src/repegCost.ts
 Repeg Cost
 ```
 ts-node src/repegCost.ts
+```
+Repeg Cost With Price Shock
+```
+ts-node src/repegCostWithPriceShock.ts
 ```
 K Adjustment Cost
 ```
