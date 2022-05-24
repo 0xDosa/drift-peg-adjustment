@@ -61,8 +61,8 @@ const main = async () => {
 	);
 	await clearingHouse.subscribe();
 
-	const markets = ['BTC', 'ETH', 'SOL'];
-	const deviations = [.01,.05,.1];
+	const markets = ['BTC'];
+	const deviations = [.01,.05,.1,.25,.5,.75];
 
 	markets.forEach(curMarket => {
 		const solMarketInfo = Markets.find(
